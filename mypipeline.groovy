@@ -48,12 +48,4 @@ pipeline 'mypipeline', {
       taskType = 'PROCEDURE'
     }
   }
-
-  // Custom properties
-
-  property 'ec_counters', {
-
-    // Custom properties
-    pipelineCounter = '2'
-  }
 }
