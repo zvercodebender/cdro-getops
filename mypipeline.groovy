@@ -1,6 +1,12 @@
 pipeline 'mypipeline', {
   projectName = 'MyProject'
 
+  formalParameter 'message', defaultValue: 'test', {
+    orderIndex = '1'
+    required = '1'
+    type = 'entry'
+  }
+
   formalParameter 'ec_stagesToRun', {
     expansionDeferred = '1'
   }
@@ -13,6 +19,15 @@ pipeline 'mypipeline', {
 
     gate 'POST', {
       }
+
+    task 'echo message', {
+      actualParameter = [
+        'commandToRun': 'echo $[message]',
+      ]
+      subpluginKey = 'EC-Core'
+      subprocedure = 'RunCommand'
+      taskType = 'COMMAND'
+    }
 
     task 'Started from Trigger', {
       actualParameter = [
@@ -32,5 +47,13 @@ pipeline 'mypipeline', {
       subproject = 'MyProject'
       taskType = 'PROCEDURE'
     }
- }
+  }
+
+  // Custom properties
+
+  property 'ec_counters', {
+
+    // Custom properties
+    pipelineCounter = '2'
+  }
 }
