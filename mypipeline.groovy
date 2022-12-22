@@ -1,4 +1,4 @@
-pipeline 'My Pipeline Trigger Demo', {
+pipeline 'mypipeline', {
   projectName = 'MyProject'
 
   formalParameter 'ec_stagesToRun', {
@@ -7,7 +7,7 @@ pipeline 'My Pipeline Trigger Demo', {
 
   stage 'Stage 1', {
     colorCode = '#289ce1'
-    pipelineName = 'My Pipeline Trigger Demo'
+    pipelineName = 'mypipeline'
     gate 'PRE', {
       }
 
@@ -26,49 +26,10 @@ pipeline 'My Pipeline Trigger Demo', {
     task 'get Properties', {
       actualParameter = [
         'basePath': 'myPipeline',
-        'pipelineName': 'My Pipeline Trigger Demo',
+        'pipelineName': 'mypipeline',
       ]
       subprocedure = 'pipelineTrace'
       subproject = 'MyProject'
       taskType = 'PROCEDURE'
     }
-
-    task 'Update Pipeline Name', {
-      actualParameter = [
-        'commandToRun': '''import groovy.json.*
-import com.electriccloud.client.groovy.ElectricFlow
-import com.electriccloud.client.groovy.models.*
-  
-  
-/***************************************************************************************/
-def printProperties( path ) {
-	ElectricFlow ef = new ElectricFlow()
-	PropertyStucture = ef.getProperties(path: path, recurse: true, expand: false).propertySheet
-    try {
-      propList = PropertyStucture.property
-      for (myProperty in propList) {
-          if ( myProperty.propertySheet != null ) {
-              //println ">>> property sheet " + myProperty.propertyName
-              printProperties( path + "/" + myProperty.propertyName )
-              //println "<<< property sheet " + myProperty.propertyName
-          } else {
-              println path + "/" + myProperty.propertyName + " = " + myProperty.value
-          }
-      }
-    } catch( Exception ex ) {
-    	println myProperty.propertyName + " = NOT FOUND"
-    }
-}
-
-ElectricFlow ef = new ElectricFlow()
-path = \'/myPipelineRuntime/parsedWebhookData\'
-printProperties( path )''',
-        'shellToUse': 'ec-groovy',
-      ]
-      subpluginKey = 'EC-Core'
-      subprocedure = 'RunCommand'
-      taskType = 'COMMAND'
-    }
-  }
-
  }
