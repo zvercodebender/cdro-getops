@@ -71,42 +71,4 @@ printProperties( path )''',
     }
   }
 
-  trigger 'GitHub Trigger', {
-    accessTokenPublicId = 'fjmybkxghbc229qr8k1mgnu0sn9k1q'
-    actualParameter = [
-      'ec_stagesToRun': '["Stage 1"]',
-    ]
-    pipelineName = 'My Pipeline Trigger Demo'
-    pluginKey = 'EC-Github'
-    pluginParameter = [
-      'commitStatusEvent': 'false',
-      'includeBranches': 'cloudbees',
-      'includeCommitStatuses': 'success',
-      'includePrActions': 'closed_merged',
-      'prEvent': 'false',
-      'pushEvent': 'true',
-      'repositories': 'zvercodebender/hello-python',
-    ]
-    quietTimeMinutes = '0'
-    runDuplicates = '0'
-    serviceAccountName = 'serviceAccount'
-    triggerType = 'webhook'
-    webhookName = 'default'
-
-    // Custom properties
-
-    property 'ec_trigger_state', {
-      propertyType = 'sheet'
-    }
-    ec_lastResponseMessage = 'Launching trigger \'GitHub Trigger\' for event \'push\' in branch(es) \'cloudbees\' of the \'zvercodebender/hello-python\' repository.'
-    ec_lastResponseTime = '1671722323493'
-  }
-
-  // Custom properties
-
-  property 'ec_counters', {
-
-    // Custom properties
-    pipelineCounter = '13'
-  }
-}
+ }
