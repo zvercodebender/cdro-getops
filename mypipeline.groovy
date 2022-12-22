@@ -33,3 +33,4 @@ pipeline 'mypipeline', {
       taskType = 'PROCEDURE'
     }
  }
+}
