@@ -23,7 +23,7 @@ pipeline 'mypipeline', {
     expansionDeferred = '1'
   }
 
-  stage 'Stage 1', {
+  stage 'Stage DEV', {
     colorCode = '#289ce1'
     pipelineName = 'mypipeline'
     gate 'PRE', {
