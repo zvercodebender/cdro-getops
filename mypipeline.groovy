@@ -1,17 +1,6 @@
 pipeline 'mypipeline', {
 
-  disableMultipleActiveRuns = '0'
-  disableRestart = '0'
-  enabled = '1'
-  overrideWorkspace = '0'
-  pipelineRunNameTemplate = null
   projectName = 'MyProject'
-  releaseName = null
-  skipStageMode = 'ENABLED'
-  templatePipelineName = null
-  templatePipelineProjectName = null
-  type = null
-  workspaceName = null
 
   formalParameter 'message', defaultValue: 'test', {
     orderIndex = '1'
@@ -23,7 +12,7 @@ pipeline 'mypipeline', {
     expansionDeferred = '1'
   }
 
-  stage 'Stage DEV', {
+  stage 'Stage 1', {
     colorCode = '#289ce1'
     pipelineName = 'mypipeline'
     gate 'PRE', {
